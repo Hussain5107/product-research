@@ -45,6 +45,25 @@ class SupabaseStorage:
         }
         product = self.client.table("products").upsert(product_payload, on_conflict="marketplace,asin").execute()
         product_id = product.data[0]["id"]
+        self.client.table("product_price_history").insert({
+            "product_id": product_id,
+            "price": result.product.price.value,
+            "source": result.product.price.source,
+            "verification_status": result.product.price.verification_status,
+            "collected_at": result.product.price.collected_at,
+        }).execute()
+        for lead in result.suppliers:
+            self.client.table("suppliers").insert({
+                "product_id": product_id,
+                "supplier_name": lead.supplier_name,
+                "platform": lead.platform,
+                "product_link": lead.product_link,
+                "unit_purchase_price": lead.unit_purchase_price,
+                "minimum_order_quantity": lead.minimum_order_quantity,
+                "verification_status": lead.verification_status,
+                "notes": lead.notes,
+                "data": asdict(lead),
+            }).execute()
         self.client.table("research_results").insert({
             "research_run_id": run_id,
             "product_id": product_id,

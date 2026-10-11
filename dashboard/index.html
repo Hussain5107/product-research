@@ -38,6 +38,22 @@
         </select>
       </section>
 
+      <section class="panel manual-run">
+        <div class="panel-title">
+          <h2>Manual Research</h2>
+          <a href="https://github.com/Hussain5107/product-research/actions/workflows/daily-amazon-research.yml" target="_blank" rel="noreferrer">Open GitHub workflow</a>
+        </div>
+        <form class="manual-grid" id="manualForm">
+          <label>Marketplace<input value="amazon.ae" readonly /></label>
+          <label>Category<input id="manualCategory" placeholder="Outdoor camping" /></label>
+          <label>Products<input id="manualCount" type="number" min="1" max="50" value="20" /></label>
+          <label>Keywords<input id="manualKeywords" placeholder="Optional notes" /></label>
+        </form>
+        <p class="manual-note" id="manualNote">
+          Static hosting cannot safely store a GitHub token, so manual runs use GitHub Actions workflow_dispatch. Use the values above when starting the workflow.
+        </p>
+      </section>
+
       <section class="panel">
         <div class="panel-title">
           <h2>Product Opportunities</h2>

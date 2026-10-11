@@ -89,6 +89,29 @@ main {
   margin-bottom: 18px;
 }
 
+.manual-run {
+  margin-bottom: 18px;
+}
+
+.manual-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  padding: 16px;
+}
+
+.manual-grid label {
+  color: var(--muted);
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.manual-note {
+  color: var(--muted);
+  padding: 0 16px 16px;
+}
+
 .panel {
   overflow: hidden;
 }

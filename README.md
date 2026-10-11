@@ -14,6 +14,7 @@ The first implementation is intentionally conservative: it does not scrape Amazo
 - Daily GitHub Actions workflow at 09:00 UAE time
 - CSV and Excel report generation
 - Static dashboard suitable for InfinityFree hosting
+- CSV import template and sample data fixtures
 - Automated tests
 
 See `SETUP_GUIDE.md` for setup and deployment.

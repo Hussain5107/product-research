@@ -6,6 +6,7 @@ from product_research.ai.gemini import GeminiAnalyzer
 from product_research.config import ResearchConfig
 from product_research.connectors.amazon import AmazonConnector
 from product_research.connectors.suppliers import SupplierConnector
+from product_research.data_quality import product_fingerprint, summarize_data_quality
 from product_research.models import ResearchResult
 from product_research.profitability import ProfitabilityCalculator
 from product_research.reports import write_reports
@@ -23,6 +24,7 @@ class ResearchEngine:
 
     def run(self, csv_path: Path | None = None) -> dict[str, object]:
         products = self.amazon.collect(self.config.categories, self.config.products_per_run, csv_path)
+        products = list({product_fingerprint(product): product for product in products}.values())
         results: list[ResearchResult] = []
         errors: list[str] = []
         for product in products:
@@ -30,6 +32,7 @@ class ResearchEngine:
                 leads = self.suppliers.find_leads(product)
                 scenarios = self.profit.calculate(product, leads)
                 analysis = self.ai.analyze(product, leads, scenarios)
+                analysis.raw["data_quality"] = summarize_data_quality(product, leads, scenarios)
                 status = "needs_verification" if analysis.data_confidence == "low" else "completed"
                 results.append(ResearchResult(product, leads, scenarios, analysis, status))
             except Exception as exc:

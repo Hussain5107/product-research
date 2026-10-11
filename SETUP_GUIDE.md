@@ -62,6 +62,8 @@ Inputs:
 
 A secure browser button for triggering GitHub Actions requires a backend endpoint. InfinityFree static hosting should not expose GitHub tokens, so the safe initial implementation uses GitHub's manual workflow trigger.
 
+The dashboard includes a Manual Research panel with the workflow link and fields to help choose dispatch inputs. It intentionally does not call the GitHub API from the browser.
+
 ## 6. Amazon Data
 
 The current system does not scrape Amazon or bypass anti-bot controls. It supports:
@@ -83,6 +85,11 @@ Optional fields:
 - `reviews`
 - `rating`
 - `bsr`
+
+Files included:
+
+- `data/amazon_import_template.csv`
+- `data/sample_products.csv`
 
 ## 7. Supplier Research
 

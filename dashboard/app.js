@@ -25,6 +25,7 @@ document.querySelector("#refreshButton").addEventListener("click", loadDashboard
 els.searchInput.addEventListener("input", renderTable);
 els.categoryFilter.addEventListener("change", renderTable);
 els.confidenceFilter.addEventListener("change", renderTable);
+document.querySelector("#manualForm").addEventListener("submit", (event) => event.preventDefault());
 
 loadDashboard();
 
