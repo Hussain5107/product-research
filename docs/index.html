@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ProductHunter AI - UAE Category Agent Dashboard</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #0f172a;
+        --muted: #64748b;
+        --line: #d8dee8;
+        --panel: #ffffff;
+        --soft: #f8fafc;
+        --accent: #4f46e5;
+        --good: #059669;
+        --warn: #d97706;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #f1f5f9;
+        color: var(--ink);
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.5;
+      }
+      header {
+        border-bottom: 1px solid var(--line);
+        background: var(--panel);
+      }
+      .wrap {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+      .hero {
+        padding: 42px 0 30px;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 999px;
+        background: #e0e7ff;
+        color: #3730a3;
+        padding: 4px 10px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      h1 {
+        margin: 14px 0 10px;
+        font-size: clamp(30px, 5vw, 52px);
+        line-height: 1.05;
+        letter-spacing: 0;
+      }
+      p {
+        margin: 0;
+        color: var(--muted);
+      }
+      main {
+        padding: 24px 0 44px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 16px;
+      }
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        padding: 18px;
+      }
+      .span-4 {
+        grid-column: span 4;
+      }
+      .span-6 {
+        grid-column: span 6;
+      }
+      .span-8 {
+        grid-column: span 8;
+      }
+      .span-12 {
+        grid-column: span 12;
+      }
+      h2 {
+        margin: 0 0 12px;
+        font-size: 18px;
+      }
+      h3 {
+        margin: 0;
+        font-size: 15px;
+      }
+      .metric {
+        font-size: 34px;
+        font-weight: 800;
+        margin-top: 4px;
+      }
+      .metric.good {
+        color: var(--good);
+      }
+      .metric.warn {
+        color: var(--warn);
+      }
+      .item {
+        display: grid;
+        grid-template-columns: 34px 1fr auto;
+        gap: 12px;
+        align-items: start;
+        padding: 12px 0;
+        border-top: 1px solid #edf2f7;
+      }
+      .item:first-child {
+        border-top: 0;
+        padding-top: 0;
+      }
+      .rank {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: var(--soft);
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .score {
+        border-radius: 999px;
+        background: #dcfce7;
+        color: #166534;
+        padding: 4px 8px;
+        font-size: 12px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 10px;
+      }
+      .chip {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 5px 9px;
+        font-size: 12px;
+        color: #334155;
+        background: var(--soft);
+      }
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+        border-radius: 8px;
+        background: var(--accent);
+        color: white;
+        font-weight: 700;
+        text-decoration: none;
+        padding: 0 14px;
+      }
+      .button.secondary {
+        background: white;
+        color: var(--accent);
+        border: 1px solid #c7d2fe;
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+      th,
+      td {
+        padding: 10px 8px;
+        text-align: left;
+        border-top: 1px solid #edf2f7;
+      }
+      th {
+        color: var(--muted);
+        font-size: 12px;
+        text-transform: uppercase;
+      }
+      @media (max-width: 860px) {
+        .span-4,
+        .span-6,
+        .span-8 {
+          grid-column: span 12;
+        }
+        .item {
+          grid-template-columns: 32px 1fr;
+        }
+        .score {
+          grid-column: 2;
+          justify-self: start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap hero">
+        <span class="badge">ProductHunter AI - Focus Mode</span>
+        <h1>UAE Category Research Agent Dashboard</h1>
+        <p>
+          Static preview of the current branch. The live app runs locally at
+          <strong>http://127.0.0.1:3000/category-research</strong> and imports the Excel research workbook.
+        </p>
+        <div class="actions">
+          <a class="button" href="https://github.com/Hussain5107/product-research/tree/producthunter-ai-agent">Open GitHub Branch</a>
+          <a class="button secondary" href="https://github.com/Hussain5107/product-research/pull/new/producthunter-ai-agent">Create Pull Request</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="grid">
+        <article class="card span-4">
+          <h2>Imported Products</h2>
+          <div class="metric">30</div>
+          <p>Products extracted from the UAE/GCC outdoor camping research workbook.</p>
+        </article>
+        <article class="card span-4">
+          <h2>Supplier Leads</h2>
+          <div class="metric">12</div>
+          <p>Alibaba, Made-in-China, CJdropshipping, and comparison leads captured for outreach.</p>
+        </article>
+        <article class="card span-4">
+          <h2>Best Bundle Margin</h2>
+          <div class="metric good">37.5%</div>
+          <p>Beach-to-Desert Kit: mat + dry bag + shoe pouches.</p>
+        </article>
+
+        <article class="card span-8">
+          <h2>Top Product Scorecard</h2>
+          <div class="item">
+            <div class="rank">1</div>
+            <div>
+              <h3>Premium sand-resistant picnic mat 200x200</h3>
+              <div class="muted">Retail AED 89-129 · China cost AED 12-24 · Low shipping · Low return risk</div>
+              <div class="chips"><span class="chip">Desert picnic</span><span class="chip">Test first</span></div>
+            </div>
+            <span class="score">9.1/10</span>
+          </div>
+          <div class="item">
+            <div class="rank">2</div>
+            <div>
+              <h3>SUV modular trunk organizer 600D</h3>
+              <div class="muted">Retail AED 119-159 · China cost AED 18-35 · Medium shipping · Low return risk</div>
+              <div class="chips"><span class="chip">Car camping storage</span><span class="chip">Test first</span></div>
+            </div>
+            <span class="score">9.0/10</span>
+          </div>
+          <div class="item">
+            <div class="rank">3</div>
+            <div>
+              <h3>Large fold-flat mesh food tents 2-pack</h3>
+              <div class="muted">Retail AED 69-99 · China cost AED 8-17 · Low shipping · Medium return risk</div>
+              <div class="chips"><span class="chip">Picnic dining</span><span class="chip">Bundle candidate</span></div>
+            </div>
+            <span class="score">8.7/10</span>
+          </div>
+          <div class="item">
+            <div class="rank">4</div>
+            <div>
+              <h3>Roll-top sand and splash dry bag 10L</h3>
+              <div class="muted">Retail AED 69-99 · China cost AED 9-19 · Low shipping · Medium return risk</div>
+              <div class="chips"><span class="chip">Dry gear storage</span><span class="chip">Bundle candidate</span></div>
+            </div>
+            <span class="score">8.6/10</span>
+          </div>
+        </article>
+
+        <aside class="card span-4">
+          <h2>Supplier Leads</h2>
+          <div class="item">
+            <div class="rank">A</div>
+            <div>
+              <h3>Wuhan Wego Outdoor Products</h3>
+              <div class="muted">Picnic mats and blankets. Ask for GSM, seam QC, MOQ 30, EXW and DDP UAE.</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="rank">B</div>
+            <div>
+              <h3>Ningbo Heyuan Textile Product</h3>
+              <div class="muted">Foldable waterproof picnic mats. Verify backing, wash resistance, and packaging.</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="rank">C</div>
+            <div>
+              <h3>Ningbo Longyang Auto Products</h3>
+              <div class="muted">SUV organizers. Verify 600D fabric, base reinforcement, and packed CBM.</div>
+            </div>
+          </div>
+        </aside>
+
+        <article class="card span-12">
+          <h2>Bundle Economics</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Bundle</th>
+                <th>Retail</th>
+                <th>Contribution</th>
+                <th>Margin</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Beach-to-Desert Kit</td>
+                <td>AED 219</td>
+                <td>AED 78</td>
+                <td>37.5%</td>
+              </tr>
+              <tr>
+                <td>Family Desert Picnic Kit</td>
+                <td>AED 209</td>
+                <td>AED 74</td>
+                <td>37.0%</td>
+              </tr>
+              <tr>
+                <td>Glamping table refresh</td>
+                <td>AED 179</td>
+                <td>AED 54</td>
+                <td>31.9%</td>
+              </tr>
+              <tr>
+                <td>Car Camping Ready Kit</td>
+                <td>AED 229</td>
+                <td>AED 62</td>
+                <td>28.3%</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

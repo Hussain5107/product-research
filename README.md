@@ -2,6 +2,16 @@
 
 AI-powered e-commerce product research platform for Amazon USA, Shopify USA, and future Middle East marketplaces.
 
+## Quick Dashboard Preview
+
+Open the current UAE Category Agent dashboard preview:
+
+[Open dashboard preview](https://htmlpreview.github.io/?https://github.com/Hussain5107/product-research/blob/producthunter-ai-agent/docs/index.html)
+
+GitHub branch:
+
+[producthunter-ai-agent](https://github.com/Hussain5107/product-research/tree/producthunter-ai-agent)
+
 ## Overview
 
 ProductHunter AI helps you discover, validate, compare, and track potentially profitable products using market intelligence, supplier information, financial modeling, and AI-assisted research.
