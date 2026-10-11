@@ -1,0 +1,16 @@
+# ProductHunter AI backend dependencies
+# Versions are kept flexible so the backend installs on current Python releases
+# (including Python 3.14 wheels). Prefer recent stable prebuilt wheels.
+
+fastapi>=0.115.6
+uvicorn[standard]>=0.34.0
+sqlalchemy[asyncio]>=2.0.36
+aiosqlite>=0.20.0
+psycopg[binary]>=3.2.3
+alembic>=1.14.0
+pydantic>=2.12
+pydantic-settings>=2.7
+redis>=5.0.7
+httpx>=0.28.1
+tenacity>=8.3.0
+python-dateutil>=2.9.0

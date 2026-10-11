@@ -1,0 +1,8 @@
+{
+  "project": "ProductHunter AI",
+  "root": "E:/AI/Product Research Tool/ProductHunterAI",
+  "frontend": "frontend",
+  "backend": "backend",
+  "stack": ["Next.js", "React", "TypeScript", "Tailwind", "shadcn/ui", "FastAPI", "PostgreSQL", "Redis"],
+  "notes": "Phase 1 scaffold with dashboard, research workflow, scoring, profit calculator, AI provider layer, and connector framework. Live research connections are not fabricated; missing sources are marked unavailable or need configuration."
+}
