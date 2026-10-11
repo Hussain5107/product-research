@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Product Research Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>Product Research</h1>
+        <p>Amazon UAE opportunity tracking with verified-data safeguards</p>
+      </div>
+      <button id="refreshButton" type="button">Refresh</button>
+    </header>
+
+    <main>
+      <section class="metrics" aria-label="Research summary">
+        <article><span>Total Products</span><strong id="totalProducts">0</strong></article>
+        <article><span>Completed Today</span><strong id="completedToday">0</strong></article>
+        <article><span>High Opportunity</span><strong id="highOpportunity">0</strong></article>
+        <article><span>Average Margin</span><strong id="averageMargin">--</strong></article>
+        <article><span>Last Successful Run</span><strong id="lastRun">--</strong></article>
+        <article><span>Next Schedule</span><strong>09:00 UAE</strong></article>
+      </section>
+
+      <section class="toolbar" aria-label="Filters">
+        <input id="searchInput" type="search" placeholder="Search products" />
+        <select id="categoryFilter"><option value="">All categories</option></select>
+        <select id="confidenceFilter">
+          <option value="">All confidence</option>
+          <option value="high">High confidence</option>
+          <option value="medium">Medium confidence</option>
+          <option value="low">Low confidence</option>
+        </select>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title">
+          <h2>Product Opportunities</h2>
+          <span id="statusText">Loading...</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Demand</th>
+                <th>Competition</th>
+                <th>Margin</th>
+                <th>AI Score</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="productRows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel details" id="detailsPanel" hidden>
+        <div class="panel-title">
+          <h2 id="detailTitle">Product details</h2>
+          <a id="detailLink" href="#" target="_blank" rel="noreferrer">Amazon listing</a>
+        </div>
+        <div class="detail-grid">
+          <div><h3>AI Assessment</h3><p id="detailAssessment"></p></div>
+          <div><h3>Risks</h3><ul id="detailRisks"></ul></div>
+          <div><h3>Recommended Actions</h3><ul id="detailActions"></ul></div>
+          <div><h3>Verification Notes</h3><ul id="detailVerification"></ul></div>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
+

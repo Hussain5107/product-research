@@ -1,0 +1,68 @@
+name: Daily Amazon Product Research
+
+on:
+  schedule:
+    # Runs at 09:00 Asia/Dubai. GitHub Actions uses UTC and may delay scheduled jobs.
+    - cron: "0 5 * * *"
+  workflow_dispatch:
+    inputs:
+      marketplace:
+        description: "Amazon marketplace"
+        required: false
+        default: "amazon.ae"
+      products_per_run:
+        description: "Number of products to research"
+        required: false
+        default: "20"
+      categories:
+        description: "Comma-separated categories"
+        required: false
+        default: "Outdoor camping,Desert picnic accessories,Car accessories,Home and kitchen,Storage and organization"
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: daily-amazon-product-research
+  cancel-in-progress: false
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-1.5-flash' }}
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      RESEARCH_MODE: ${{ vars.RESEARCH_MODE || 'sample' }}
+      RESEARCH_MARKETPLACE: ${{ github.event.inputs.marketplace || 'amazon.ae' }}
+      RESEARCH_PRODUCTS_PER_RUN: ${{ github.event.inputs.products_per_run || '20' }}
+      RESEARCH_CATEGORIES: ${{ github.event.inputs.categories || 'Outdoor camping,Desert picnic accessories,Car accessories,Home and kitchen,Storage and organization' }}
+      REPORT_OUTPUT_DIR: reports
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Run research engine
+        run: python -m product_research.cli
+
+      - name: Upload reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: daily-amazon-product-research-reports
+          path: reports/
+          if-no-files-found: warn
+          retention-days: 30
+
